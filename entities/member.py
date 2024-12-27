@@ -1,15 +1,24 @@
-from dataclasses import dataclass
 from entities.core import BaseEntitie
 
 
-@dataclass
 class Member(BaseEntitie):
-    name: str
-    has_paused: bool
-    paused_time: int
-    logged_time: int
-    total_calls: int
-    last_call_time: int
+
+    def __init__(
+        self,
+        name: str,
+        has_paused: bool,
+        paused_time: int,
+        logged_time: int,
+        total_calls: int,
+        last_call_time: int,
+    ):
+        self.name = name
+        self.has_paused = has_paused
+        self.paused_time = paused_time
+        self.logged_time = logged_time
+        self.total_calls = total_calls
+        self.last_call_time = last_call_time
+        self.type = 'member'
 
     class DoesExists(Exception):
         ...
@@ -25,6 +34,3 @@ class Member(BaseEntitie):
         return bool(self.has_paused == value.has_paused and
             self.get_key() == value.get_key() 
         )
-
-    def __post_init__(self) -> None:
-        self.type = 'member'

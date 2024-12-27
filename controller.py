@@ -46,8 +46,14 @@ class Controller:
         queues_diff = self._queue_repository.diff()
 
         for queue, event in queues_diff:
-            queue_data: Queue = self._queue_repository.get(queue)
-            queue_dict = queue_data.get_dict()
+
+            if event == 'removed':
+                queue_dict = {'queuename': queue, 'type': 'queue'}
+            
+            else:
+                queue_data: Queue = self._queue_repository.get(queue)
+                queue_dict = queue_data.get_dict()
+
             queue_dict['event'] = event
             data.append(queue_dict)
         

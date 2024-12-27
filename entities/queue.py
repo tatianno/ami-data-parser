@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 from entities.core import BaseEntitie
 from factories.call_factory import get_calls
 from factories.member_factory import get_members
@@ -37,16 +36,21 @@ class Queue(BaseEntitie):
         return self.queuename
     
     def get_dict(self) -> dict:
-        data = self.__dict__
-        data['members'] = self.members.get_dict()
-        data['waiting_calls'] = self.waiting_calls.get_dict()
+        data = {
+            "queuename": self.queuename,
+            "total_calls": self.total_calls,
+            "strategy": self.strategy,
+            "wait_mean": self.wait_mean,
+            "duration_mean": self.duration_mean,
+            "total_wait_calls": self.total_wait_calls,
+            "total_completed_calls": self.total_completed_calls,
+            "total_abandoned_calls": self.total_abandoned_calls,
+            "members": self.members.get_dict(),
+            "waiting_calls": self.waiting_calls.get_dict(),
+            "type": self.type
+        }
         return data
 
-    def __post_init__(self) -> None:
-        self.type = 'queue'
-        self._generate_member_repository()
-        self._generate_call_repository()
-    
     def _generate_member_repository(self, members: list) -> MemberRepository:
         repository = MemberRepository()
         repository.set(get_members(members))        
@@ -61,7 +65,7 @@ class Queue(BaseEntitie):
 
         if type(self) != type(value):
             return False
-
+        
         return bool(
             self.members == value.members and
             self.waiting_calls == value.waiting_calls and

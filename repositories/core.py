@@ -16,7 +16,7 @@ class BaseRepository:
 
         if type(obj) not in [list, tuple]:
             obj = [obj]
-        
+                
         for item in obj:
 
             if type(item) != self._entitie:

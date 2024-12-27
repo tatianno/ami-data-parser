@@ -1,5 +1,4 @@
 class BaseEntitie:
-    type: str
 
     class DoesExists(Exception):
         
