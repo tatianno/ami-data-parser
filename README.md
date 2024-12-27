@@ -6,3 +6,9 @@ This repository aims to provide a tool to interpret and process data received fr
 - Parsing data from the AMI.
 - Detecting status changes in queues and extensions.
 - Exposing processed data in an integration-friendly format.
+
+## Repository
+Github: https://github.com/tatianno/ami-data-parser
+
+## Requirements
+ - Python 3.10 +
