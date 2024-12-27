@@ -5,6 +5,9 @@ from repositories.core import BaseRepository
 class MemberRepository(BaseRepository):
     _entitie = Member  
 
+    def get(self, name) -> Member:
+        return super().get(name)
+
     def get_dict(self) -> dict:
         return [
             vars(self._objects[key])

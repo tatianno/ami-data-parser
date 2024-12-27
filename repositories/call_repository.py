@@ -5,6 +5,9 @@ from repositories.core import BaseRepository
 class CallRepository(BaseRepository):
     _entitie = Call
 
+    def get(self, name) -> Call:
+        return super().get(name)
+    
     def get_dict(self) -> dict:
         return [
             vars(self._objects[key])

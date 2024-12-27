@@ -8,10 +8,22 @@ from repositories.queue_repository import QueueRepository
 
 
 class Controller:
-    _hint_parser = HintParser()
-    _queue_parser = QueueParser()
-    _peer_repository = PeerRepository()
-    _queue_repository = QueueRepository()
+
+    def __init__(self):
+        self._hint_parser = HintParser()
+        self._queue_parser = QueueParser()
+        self._peer_repository = PeerRepository()
+        self._queue_repository = QueueRepository()
+
+    def get(self, entity_key: str, entity_type: str):
+
+        if entity_type == 'peer':
+            return self._peer_repository.get(entity_key)
+        
+        elif entity_type == 'queue':
+            return self._queue_repository.get(entity_key)
+        
+        raise TypeError(f'Invalid type: {entity_type}')
 
     def peer_update(self, received_data: list) -> list:
         data = []
