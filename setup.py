@@ -1,5 +1,4 @@
-import os
-from setuptools import setup, find_packages
+from setuptools import setup
 
 
 with open("README.md", "r") as arq:
