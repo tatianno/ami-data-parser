@@ -1,7 +1,7 @@
 from unittest import TestCase
-from controller import Controller
-from entities.peer import Peer
-from entities.queue import Queue
+from ami_data_parser.controller import Controller
+from ami_data_parser.entities.peer import Peer
+from ami_data_parser.entities.queue import Queue
 
 
 class ControllerTestCase(TestCase):

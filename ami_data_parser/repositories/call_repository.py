@@ -1,5 +1,5 @@
-from entities.call import Call
-from repositories.core import BaseRepository
+from ami_data_parser.entities.call import Call
+from ami_data_parser.repositories.core import BaseRepository
 
 
 class CallRepository(BaseRepository):

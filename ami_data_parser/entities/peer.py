@@ -1,4 +1,4 @@
-from entities.core import BaseEntitie
+from ami_data_parser.entities.core import BaseEntitie
 
 
 class Peer(BaseEntitie):

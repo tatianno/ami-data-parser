@@ -1,5 +1,5 @@
 from unittest import TestCase
-from factories.peer_factory import get_peers
+from ami_data_parser.factories.peer_factory import get_peers
 
 
 class PeerFactoryTestCase(TestCase):

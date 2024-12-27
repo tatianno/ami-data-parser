@@ -1,4 +1,4 @@
-from parser.core import BaseParser, ParserException
+from ami_data_parser.parser.core import BaseParser, ParserException
 
 
 class QueueParser(BaseParser):

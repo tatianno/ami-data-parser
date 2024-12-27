@@ -1,5 +1,5 @@
 from unittest import TestCase
-from entities.member import Member
+from ami_data_parser.entities.member import Member
 
 
 class MemberTestCase(TestCase):

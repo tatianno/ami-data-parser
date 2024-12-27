@@ -1,5 +1,5 @@
 from unittest import TestCase
-from factories.call_factory import get_calls
+from ami_data_parser.factories.call_factory import get_calls
 
 
 class CallFactoryTestCase(TestCase):

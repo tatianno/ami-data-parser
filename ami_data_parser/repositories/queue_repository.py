@@ -1,5 +1,5 @@
-from entities.queue import Queue
-from repositories.core import BaseRepository
+from ami_data_parser.entities.queue import Queue
+from ami_data_parser.repositories.core import BaseRepository
 
 
 class QueueRepository(BaseRepository):

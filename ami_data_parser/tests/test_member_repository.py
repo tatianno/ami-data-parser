@@ -1,7 +1,7 @@
 from unittest import TestCase
-from entities.member import Member
-from factories.member_factory import get_members
-from repositories.member_repository import MemberRepository
+from ami_data_parser.entities.member import Member
+from ami_data_parser.factories.member_factory import get_members
+from ami_data_parser.repositories.member_repository import MemberRepository
 
 
 class MemberRepositoryTestCase(TestCase):

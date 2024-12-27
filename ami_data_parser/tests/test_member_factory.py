@@ -1,5 +1,5 @@
 from unittest import TestCase
-from factories.member_factory import get_members
+from ami_data_parser.factories.member_factory import get_members
 
 
 class MemberFactoryTestCase(TestCase):

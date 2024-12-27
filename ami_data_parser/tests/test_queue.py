@@ -1,7 +1,7 @@
 from unittest import TestCase
-from entities.queue import Queue
-from repositories.member_repository import MemberRepository
-from repositories.call_repository import CallRepository
+from ami_data_parser.entities.queue import Queue
+from ami_data_parser.repositories.member_repository import MemberRepository
+from ami_data_parser.repositories.call_repository import CallRepository
 
 
 class QueueTestCase(TestCase):

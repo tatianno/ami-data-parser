@@ -1,7 +1,7 @@
 from unittest import TestCase
-from entities.call import Call
-from factories.call_factory import get_calls
-from repositories.call_repository import CallRepository
+from ami_data_parser.entities.call import Call
+from ami_data_parser.factories.call_factory import get_calls
+from ami_data_parser.repositories.call_repository import CallRepository
 
 
 class CallRepositoryTestCase(TestCase):

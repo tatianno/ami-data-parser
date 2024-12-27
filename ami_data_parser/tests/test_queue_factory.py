@@ -1,5 +1,5 @@
 from unittest import TestCase
-from factories.queue_factory import get_queues
+from ami_data_parser.factories.queue_factory import get_queues
 
 
 class QueueFactoryTestCase(TestCase):

@@ -1,7 +1,7 @@
 from unittest import TestCase
-from entities.queue import Queue
-from factories.queue_factory import get_queues
-from repositories.queue_repository import QueueRepository
+from ami_data_parser.entities.queue import Queue
+from ami_data_parser.factories.queue_factory import get_queues
+from ami_data_parser.repositories.queue_repository import QueueRepository
 
 
 class QueueRepositoryTestCase(TestCase):

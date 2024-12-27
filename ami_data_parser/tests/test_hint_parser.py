@@ -1,5 +1,5 @@
 from unittest import TestCase
-from parser.hint_parser import HintParser
+from ami_data_parser.parser.hint_parser import HintParser
 
 
 class HintParserTestCase(TestCase):

@@ -1,8 +1,8 @@
-from entities.core import BaseEntitie
-from factories.call_factory import get_calls
-from factories.member_factory import get_members
-from repositories.call_repository import CallRepository
-from repositories.member_repository import MemberRepository
+from ami_data_parser.entities.core import BaseEntitie
+from ami_data_parser.factories.call_factory import get_calls
+from ami_data_parser.factories.member_factory import get_members
+from ami_data_parser.repositories.call_repository import CallRepository
+from ami_data_parser.repositories.member_repository import MemberRepository
 
 
 class Queue(BaseEntitie):

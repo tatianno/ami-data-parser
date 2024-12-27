@@ -1,10 +1,10 @@
-from entities.queue import Queue
-from factories.peer_factory import get_peers
-from factories.queue_factory import get_queues
-from parser.hint_parser import HintParser
-from parser.queue_parser import QueueParser
-from repositories.peer_repository import PeerRepository
-from repositories.queue_repository import QueueRepository
+from ami_data_parser.entities.queue import Queue
+from ami_data_parser.factories.peer_factory import get_peers
+from ami_data_parser.factories.queue_factory import get_queues
+from ami_data_parser.parser.hint_parser import HintParser
+from ami_data_parser.parser.queue_parser import QueueParser
+from ami_data_parser.repositories.peer_repository import PeerRepository
+from ami_data_parser.repositories.queue_repository import QueueRepository
 
 
 class Controller:

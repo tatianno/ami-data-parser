@@ -1,4 +1,4 @@
-from entities.call import Call
+from ami_data_parser.entities.call import Call
 
 
 def get_calls(data: list) -> list:

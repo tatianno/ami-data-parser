@@ -1,13 +1,20 @@
-from dataclasses import dataclass
-from entities.core import BaseEntitie
+from ami_data_parser.entities.core import BaseEntitie
 
 
-@dataclass
 class Call(BaseEntitie): 
-    channel: str
-    position: int
-    wait_time: int
-    priority: int
+
+    def __init__(
+        self,
+        channel: str,
+        position: int,
+        wait_time: int,
+        priority: int
+    ):
+        self.channel = channel
+        self.position = position
+        self.wait_time = wait_time
+        self.priority = priority
+        self.type = 'call'
     
     def get_key(self) -> str:
         return self.channel
@@ -21,6 +28,3 @@ class Call(BaseEntitie):
             self.position == value.position and
             self.get_key() == value.get_key()    
         )
-    
-    def __post_init__(self) -> None:
-        self.type = 'call'

@@ -1,7 +1,7 @@
 from unittest import TestCase
-from entities.peer import Peer
-from factories.peer_factory import get_peers
-from repositories.peer_repository import PeerRepository
+from ami_data_parser.entities.peer import Peer
+from ami_data_parser.factories.peer_factory import get_peers
+from ami_data_parser.repositories.peer_repository import PeerRepository
 
 
 class PeerRepositoryTestCase(TestCase):

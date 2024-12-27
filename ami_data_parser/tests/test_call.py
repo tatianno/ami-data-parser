@@ -1,5 +1,5 @@
 from unittest import TestCase
-from entities.call import Call
+from ami_data_parser.entities.call import Call
 
 
 class CallTestCase(TestCase):

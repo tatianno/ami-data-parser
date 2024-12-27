@@ -1,5 +1,5 @@
-from entities.member import Member
-from repositories.core import BaseRepository
+from ami_data_parser.entities.member import Member
+from ami_data_parser.repositories.core import BaseRepository
 
 
 class MemberRepository(BaseRepository):

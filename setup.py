@@ -7,7 +7,7 @@ with open("README.md", "r") as arq:
 
 setup(
     name='ami-data-parser',
-    version='0.0.1',
+    version='0.1.0',
     license='MIT License',
     author='Tatianno Alves',
     long_description=readme,
@@ -15,5 +15,4 @@ setup(
     author_email='tferreiraalves@gmail.com',
     keywords='asterisk manager interface ami parser data',
     description=u'AMI parser data',
-    packages=find_packages(include=['ami_data_parser', 'ami_data_parser.*']),
 )

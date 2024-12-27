@@ -1,5 +1,5 @@
 from unittest import TestCase
-from parser.queue_parser import QueueParser
+from ami_data_parser.parser.queue_parser import QueueParser
 
 
 class QueueParserTestCase(TestCase):
