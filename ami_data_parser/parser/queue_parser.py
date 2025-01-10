@@ -29,7 +29,11 @@ class QueueParser(BaseParser):
 
                     actual_list = []
                 
-                actual_list.append(line)
+                try:
+                    actual_list.append(line)
+                
+                except AttributeError:
+                    return []
         
         if actual_list:
             data.append(actual_list)
