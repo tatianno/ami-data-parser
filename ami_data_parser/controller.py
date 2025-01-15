@@ -14,6 +14,8 @@ class Controller:
         self._queue_parser = QueueParser()
         self._peer_repository = PeerRepository()
         self._queue_repository = QueueRepository()
+        self._get_peers = get_peers
+        self._get_queues = get_queues
 
     def get(self, entity_key: str, entity_type: str):
 
@@ -28,7 +30,7 @@ class Controller:
     def peer_update(self, received_data: list) -> list:
         data = []
         parser_data = self._hint_parser.get_data(received_data)
-        peers_data = get_peers(parser_data)
+        peers_data = self._get_peers(parser_data)
         self._peer_repository.set(
             peers_data
         )
@@ -51,7 +53,7 @@ class Controller:
     def queue_update(self, received_data: list) -> list:
         data = []
         parser_data = self._queue_parser.get_data(received_data)
-        queues_data = get_queues(parser_data)
+        queues_data = self._get_queues(parser_data)
         self._queue_repository.set(
             queues_data
         )

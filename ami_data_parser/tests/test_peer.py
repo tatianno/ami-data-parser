@@ -1,4 +1,5 @@
 from unittest import TestCase
+from .utils import PeerTest
 from ami_data_parser.entities.peer import Peer
 
 
@@ -12,12 +13,13 @@ class PeerTestCase(TestCase):
             'presence': 'not_set',
             'watchers': 0
         }
-        peer = Peer(**received_data)
+        peer = PeerTest(**received_data)
         self.assertEqual(peer.type, 'peer')
         self.assertEqual(peer.exten, '104')
         self.assertEqual(peer.peername, 'SIP/IP-104-IJ8vP')
         self.assertEqual(peer.state, 'Unavailable')
         self.assertEqual(peer.presence, 'not_set')
+        self.assertEqual(peer.timestamp, 1736960329.736009)
         self.assertEqual(peer.watchers, 0)
     
     def test_instance_equal(self):
@@ -66,6 +68,6 @@ class PeerTestCase(TestCase):
             'presence': 'not_set',
             'watchers': 0
         }
-        expect_data = {'type': 'peer', 'exten': '104', 'peername': 'SIP/IP-104-IJ8vP', 'state': 'Unavailable', 'presence': 'not_set', 'watchers': 0}
-        peer = Peer(**received_data)
+        expect_data = {'type': 'peer', 'exten': '104', 'peername': 'SIP/IP-104-IJ8vP', 'state': 'Unavailable', 'presence': 'not_set', 'watchers': 0, 'timestamp': 1736960329.736009}
+        peer = PeerTest(**received_data)
         self.assertDictEqual(vars(peer), expect_data)
