@@ -17,12 +17,20 @@ class Controller:
         self._get_peers = get_peers
         self._get_queues = get_queues
 
-    def get(self, entity_key: str, entity_type: str):
+    def get(self, entity_key: str, entity_type: str, raise_exception=False):
 
         if entity_type == 'peer':
+
+            if not self._peer_repository.exists(entity_key) and not raise_exception:
+                return None
+            
             return self._peer_repository.get(entity_key)
         
         elif entity_type == 'queue':
+
+            if not self._queue_repository.exists(entity_key) and not raise_exception:
+                return None
+            
             return self._queue_repository.get(entity_key)
         
         raise TypeError(f'Invalid type: {entity_type}')

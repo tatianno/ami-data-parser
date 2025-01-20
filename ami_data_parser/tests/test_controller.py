@@ -70,20 +70,32 @@ class ControllerTestCase(TestCase):
             'queue1'
         )
     
-    def test_get_peer_not_exists(self):
+    def test_get_peer_not_exists_raise_exception(self):
         controller = Controller()
         self.assertRaises(
             Peer.DoesExists,
             controller.get,
             'SIP/IP-104-IJ8vP', 
-            'peer'
+            'peer',
+            raise_exception=True
         )
     
-    def test_get_queue_not_exists(self):
+    def test_get_queue_not_exists_raise_exception(self):
         controller = Controller()
         self.assertRaises(
             Queue.DoesExists,
             controller.get,
             'Queue_11', 
-            'queue'
+            'queue',
+            raise_exception=True
         )
+
+    def test_get_peer_not_exists(self):
+        controller = Controller()
+        queue = controller.get('SIP/IP-104', 'peer')
+        self.assertIsNone(queue)
+    
+    def test_get_queue_not_exists(self):
+        controller = Controller()
+        queue = controller.get('Queue_11', 'queue')
+        self.assertIsNone(queue)
