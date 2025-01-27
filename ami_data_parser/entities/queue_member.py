@@ -1,7 +1,7 @@
 from ami_data_parser.entities.core import BaseEntitie
 
 
-class Member(BaseEntitie):
+class QueueMember(BaseEntitie):
 
     def __init__(
         self,

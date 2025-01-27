@@ -14,6 +14,7 @@ class Controller:
         self._queue_parser = QueueParser()
         self._peer_repository = PeerRepository()
         self._queue_repository = QueueRepository()
+        self._queues_members_dict = {}
         self._get_peers = get_peers
         self._get_queues = get_queues
 
@@ -34,6 +35,9 @@ class Controller:
             return self._queue_repository.get(entity_key)
         
         raise TypeError(f'Invalid type: {entity_type}')
+
+    def get_list_queues_from_a_peer(self, key: str) -> list:
+        return self._queues_members_dict.get(key, [])
 
     def peer_update(self, received_data: list) -> list:
         data = []
@@ -61,6 +65,7 @@ class Controller:
     def queue_update(self, received_data: list) -> list:
         data = []
         parser_data = self._queue_parser.get_data(received_data)
+        self.set_list_queues_from_members(parser_data)
         queues_data = self._get_queues(parser_data)
         self._queue_repository.set(
             queues_data
@@ -80,4 +85,21 @@ class Controller:
             data.append(queue_dict)
         
         return data
-        
+    
+    def set_list_queues_from_members(self, parser_data: list):
+        self._clear_queues_members_dict()
+
+        for queue_data in parser_data:
+            queuename = queue_data.get('queuename')
+
+            for member_data in queue_data.get('members', []):
+                membername = member_data.get('name')
+
+                if membername not in self._queues_members_dict:
+                    self._queues_members_dict[membername] = []
+                
+                if queuename not in self._queues_members_dict[membername]:
+                    self._queues_members_dict[membername].append(queuename)              
+    
+    def _clear_queues_members_dict(self):
+        self._queues_members_dict = {}

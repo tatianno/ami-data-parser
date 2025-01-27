@@ -1,8 +1,8 @@
 from unittest import TestCase
-from ami_data_parser.factories.member_factory import get_members
+from ami_data_parser.factories.queue_member_factory import get_queue_members
 
 
-class MemberFactoryTestCase(TestCase):
+class QueueMemberFactoryTestCase(TestCase):
 
     def test_get_members(self):
         received_data = [
@@ -23,5 +23,5 @@ class MemberFactoryTestCase(TestCase):
                 'last_call_time': 1218
             }
         ]
-        queues = get_members(received_data)
+        queues = get_queue_members(received_data)
         self.assertEqual(len(queues), 2)

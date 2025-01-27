@@ -1,11 +1,11 @@
-from ami_data_parser.entities.member import Member
+from ami_data_parser.entities.queue_member import QueueMember
 from ami_data_parser.repositories.core import BaseRepository
 
 
 class MemberRepository(BaseRepository):
-    _entitie = Member  
+    _entitie = QueueMember  
 
-    def get(self, name) -> Member:
+    def get(self, name) -> QueueMember:
         return super().get(name)
 
     def get_dict(self) -> dict:

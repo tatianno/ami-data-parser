@@ -1,6 +1,6 @@
 from unittest import TestCase
-from ami_data_parser.entities.member import Member
-from ami_data_parser.factories.member_factory import get_members
+from ami_data_parser.entities.queue_member import QueueMember
+from ami_data_parser.factories.queue_member_factory import get_queue_members
 from ami_data_parser.repositories.member_repository import MemberRepository
 
 
@@ -16,7 +16,7 @@ class MemberRepositoryTestCase(TestCase):
             'last_call_time': 1912
         }
         repository = MemberRepository()
-        member = Member(**received_data)
+        member = QueueMember(**received_data)
         repository.set(member)
         self.assertEqual(member, repository._objects.get('SIP/IP1489'))
     
@@ -38,14 +38,14 @@ class MemberRepositoryTestCase(TestCase):
             'last_call_time': 1912
         }
         repository = MemberRepository()
-        member = Member(**received_data)
+        member = QueueMember(**received_data)
         repository.set(member)
         self.assertEqual(member, repository.get('SIP/IP1489'))
 
     def test_member_repository_get_exception(self):
         repository = MemberRepository()
         self.assertRaises(
-            Member.DoesExists,
+            QueueMember.DoesExists,
             repository.get,
             'SIP/IP-100'
         )
@@ -61,7 +61,7 @@ class MemberRepositoryTestCase(TestCase):
         }
         repository = MemberRepository()
         self.assertFalse(repository.exists('SIP/IP1489'))
-        member = Member(**received_data)
+        member = QueueMember(**received_data)
         repository.set(member)
         self.assertTrue(repository.exists('SIP/IP1489'))
     
@@ -75,7 +75,7 @@ class MemberRepositoryTestCase(TestCase):
             'last_call_time': 1912
         }
         repository = MemberRepository()
-        member = Member(**received_data)
+        member = QueueMember(**received_data)
         repository.set(member)
         repository.delete('SIP/IP1489')
         self.assertFalse(repository.exists('SIP/IP1489'))
@@ -89,7 +89,7 @@ class MemberRepositoryTestCase(TestCase):
             'total_calls': 3,
             'last_call_time': 1912
         }
-        member = Member(**received_data)
+        member = QueueMember(**received_data)
         repository1 = MemberRepository()
         repository2 = MemberRepository()
         repository1.set(member)
@@ -105,7 +105,7 @@ class MemberRepositoryTestCase(TestCase):
             'total_calls': 3,
             'last_call_time': 1912
         }
-        member1 = Member(**received_data)
+        member1 = QueueMember(**received_data)
         received_data = {
             'name': 'SIP/IP1489',
             'has_paused': True,
@@ -114,7 +114,7 @@ class MemberRepositoryTestCase(TestCase):
             'total_calls': 3,
             'last_call_time': 1912
         }
-        member2 = Member(**received_data)
+        member2 = QueueMember(**received_data)
         repository1 = MemberRepository()
         repository2 = MemberRepository()
         repository1.set(member1)
@@ -141,7 +141,7 @@ class MemberRepositoryTestCase(TestCase):
                 'last_call_time': 1218
             }
         ]
-        members = get_members(received_data)
+        members = get_queue_members(received_data)
         repository.set(members)
         self.assertListEqual(repository.diff(), [('SIP/IP1489', 'added'), ('SIP/IP1490', 'added')])
         self.assertListEqual(repository.diff(), [])
@@ -163,6 +163,6 @@ class MemberRepositoryTestCase(TestCase):
                 'last_call_time': 1218
             }
         ]
-        members = get_members(received_data)
+        members = get_queue_members(received_data)
         repository.set(members)
         self.assertListEqual(repository.diff(), [('SIP/IP1490', 'changed')])

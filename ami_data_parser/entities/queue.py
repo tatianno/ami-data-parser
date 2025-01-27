@@ -1,6 +1,6 @@
 from ami_data_parser.entities.core import BaseEntitie
 from ami_data_parser.factories.call_factory import get_calls
-from ami_data_parser.factories.member_factory import get_members
+from ami_data_parser.factories.queue_member_factory import get_queue_members
 from ami_data_parser.repositories.call_repository import CallRepository
 from ami_data_parser.repositories.member_repository import MemberRepository
 
@@ -53,7 +53,7 @@ class Queue(BaseEntitie):
 
     def _generate_member_repository(self, members: list) -> MemberRepository:
         repository = MemberRepository()
-        repository.set(get_members(members))        
+        repository.set(get_queue_members(members))        
         return repository
     
     def _generate_call_repository(self, waiting_calls: list) -> CallRepository:
