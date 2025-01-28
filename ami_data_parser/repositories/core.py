@@ -57,6 +57,12 @@ class BaseRepository:
         diff = self._diff
         self._clean_diff()
         return diff
+    
+    def add_diff(self, data: list) -> None:
+
+        if type(data) == list:
+            if len(data) > 0:
+                self._diff.extend(data)
 
     def get(self, name: str) -> object:
         obj = self._objects.get(name)
