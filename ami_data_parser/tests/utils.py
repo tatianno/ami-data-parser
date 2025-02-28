@@ -19,3 +19,10 @@ def get_peers_test(data: list) -> list:
         PeerTest(**item)
         for item in data
     ]
+
+
+def get_channels_test(data: list) -> list:
+    return [
+        ChannelTest(**item)
+        for item in data
+    ]
