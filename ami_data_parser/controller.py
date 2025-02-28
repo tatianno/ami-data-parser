@@ -1,8 +1,11 @@
 from ami_data_parser.entities.queue import Queue
+from ami_data_parser.factories.channel_factory import get_channels
 from ami_data_parser.factories.peer_factory import get_peers
 from ami_data_parser.factories.queue_factory import get_queues
+from ami_data_parser.parser.channel_parser import ChannelParser
 from ami_data_parser.parser.hint_parser import HintParser
 from ami_data_parser.parser.queue_parser import QueueParser
+from ami_data_parser.repositories.channel_repository import ChannelRepository
 from ami_data_parser.repositories.peer_repository import PeerRepository
 from ami_data_parser.repositories.queue_repository import QueueRepository
 
@@ -10,12 +13,15 @@ from ami_data_parser.repositories.queue_repository import QueueRepository
 class Controller:
 
     def __init__(self):
+        self._channel_parser = ChannelParser()
         self._hint_parser = HintParser()
         self._queue_parser = QueueParser()
+        self._channel_repository = ChannelRepository()
         self._peer_repository = PeerRepository()
         self._queue_repository = QueueRepository()
         self._queues_members_dict = {}
         self._diff_queues_list = []
+        self._get_channels = get_channels
         self._get_peers = get_peers
         self._get_queues = get_queues
 
@@ -35,6 +41,13 @@ class Controller:
             
             return self._queue_repository.get(entity_key)
         
+        elif entity_type == 'channel':
+
+            if not self._channel_repository.exists(entity_key) and not raise_exception:
+                return None
+            
+            return self._channel_repository.get(entity_key)
+        
         raise TypeError(f'Invalid type: {entity_type}')
     
     def update(self, data: list) -> dict:
@@ -47,6 +60,9 @@ class Controller:
         
         elif data_type == 'queue':
             data_diff.extend(self.queue_update(data))
+        
+        elif data_type == 'channel':
+            data_diff.extend(self.channel_update(data))
         
         return data_diff
 
@@ -92,6 +108,25 @@ class Controller:
         
         return data
     
+    def channel_update(self, received_data: list=[]) -> list:
+        data = []
+        self.update_channels_repository(received_data)
+        channels_diff = self._channel_repository.diff()
+
+        for channel, event in channels_diff:
+            
+            if event == 'removed':
+                channel_dict = {'channel': channel, 'type': 'channel'}
+            
+            else:
+                channel = self._channel_repository.get(channel)
+                channel_dict = vars(channel)
+            
+            channel_dict['event'] = event
+            data.append(channel_dict)
+            
+        return data
+    
     def update_peers_repository(self, data: list) -> None:
         parser_data = self._hint_parser.get_data(data)
         peers_data = self._get_peers(parser_data)
@@ -108,6 +143,13 @@ class Controller:
             self._queue_repository.set(
                 queues_data
             )
+    
+    def update_channels_repository(self, data: list) -> None:
+        parser_data = self._channel_parser.get_data(data)
+        channels_data = self._get_channels(parser_data)
+        self._channel_repository.set(
+            channels_data
+        )
     
     def get_queues_diff(self) -> list:
         self._queue_repository.add_diff(self._diff_queues_list)
@@ -151,3 +193,6 @@ class Controller:
             
             elif 'strategy' in line:
                 return 'queue'
+            
+            elif '!' in line:
+                return 'channel'

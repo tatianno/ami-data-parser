@@ -105,7 +105,8 @@ class ChannelTestCase(TestCase):
             'app_data': '(Outgoing Line)',
             'callerid_num': '997799298',
             'uniqueid': '1740760337.2',
-            'timestamp': 1736960329.736009
+            'timestamp': 1736960329.736009,
+            'type': 'channel'
         }
         channel = ChannelTest(**received_data)
         self.assertDictEqual(vars(channel), expected_data)

@@ -25,6 +25,7 @@ class Channel(BaseEntitie):
         self.callerid_num = callerid_num
         self.uniqueid = uniqueid
         self.timestamp = self._get_timestamp()
+        self.type = 'channel'
 
     def get_key(self) -> str:
         return self.channel
