@@ -1,5 +1,16 @@
 class ChannelParser:
 
+    def get_data(self, lines: list) -> list:
+        channels_data = []
+
+        for line in lines:
+            channel_data = self._get_parser_channel(line)
+
+            if channel_data:
+                channels_data.append(channel_data)
+        
+        return channels_data
+
     def _get_parser_channel(self, line: str) -> dict:
 
         if 'Output:' not in line:

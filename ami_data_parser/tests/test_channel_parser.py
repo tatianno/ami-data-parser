@@ -6,7 +6,33 @@ class ChannelParserTestCase(TestCase):
 
     def test_get_data(self):
         received_data = ['Response: Success\r\n', 'ActionID: tatianno-ThinkPad-L470-00000001\r\n', 'Message: Command output follows\r\n', 'Output: SIP/IP-7436-QPQGE-00000002!C_1_ENT!997799298!1!Down!AppDial!(Outgoing Line)!997799298!3!3!3!2!!1740760337.2\r\n', 'Output: SIP/IP-101-Q14V2-00000001!macro-externa!s!22!Ring!Dial!SIP/IP-7436-QPQGE/997799298,90,TtM(saida_atendimento)!101!3!!3!2!!1740760337.1\r\n']
-    
+        expected_data = [
+            {
+                'channel': 'SIP/IP-7436-QPQGE-00000002',
+                'context': 'C_1_ENT',
+                'exten': '997799298',
+                'priority': '1',
+                'state': 'Down',
+                'application': 'AppDial',
+                'app_data': '(Outgoing Line)',
+                'callerid_num': '997799298',
+                'uniqueid': '1740760337.2'
+            },
+            {
+                'channel': 'SIP/IP-101-Q14V2-00000001',
+                'context': 'macro-externa',
+                'exten': 's',
+                'priority': '22',
+                'state': 'Ring',
+                'application': 'Dial',
+                'app_data': 'SIP/IP-7436-QPQGE/997799298,90,TtM(saida_atendimento)',
+                'callerid_num': '101',
+                'uniqueid': '1740760337.1'
+            }
+        ]
+        parser = ChannelParser()
+        data = parser.get_data(received_data)
+        self.assertListEqual(data, expected_data)
 
     def test_get_parser_channel(self):
         received_data = 'Output: SIP/IP-7436-QPQGE-00000002!C_1_ENT!997799298!1!Down!AppDial!(Outgoing Line)!997799298!3!3!3!2!!1740760337.2\r\n'
