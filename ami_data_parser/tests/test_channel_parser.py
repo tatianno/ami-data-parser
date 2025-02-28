@@ -33,6 +33,13 @@ class ChannelParserTestCase(TestCase):
         parser = ChannelParser()
         data = parser.get_data(received_data)
         self.assertListEqual(data, expected_data)
+    
+    def test_get_data_empty(self):
+        received_data = ['Response: Success\r\n', 'ActionID: tatianno-ThinkPad-L470-0000000c\r\n', 'Message: Command output follows\r\n', 'Output: \r\n']
+        expected_data = []
+        parser = ChannelParser()
+        data = parser.get_data(received_data)
+        self.assertListEqual(data, expected_data)
 
     def test_get_parser_channel(self):
         received_data = 'Output: SIP/IP-7436-QPQGE-00000002!C_1_ENT!997799298!1!Down!AppDial!(Outgoing Line)!997799298!3!3!3!2!!1740760337.2\r\n'

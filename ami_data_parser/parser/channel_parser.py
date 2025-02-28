@@ -13,7 +13,7 @@ class ChannelParser:
 
     def _get_parser_channel(self, line: str) -> dict:
 
-        if 'Output:' not in line:
+        if 'Output:' not in line or 'Output: \r\n'  in line:
             return None 
         
         data = self._get_data_list(line)
