@@ -146,8 +146,14 @@ class QueueParser(BaseParser):
         return int(total_abandoned_calls)
     
     def _get_member_name(self, line: str) -> str:
+
+        if '(dynamic)' in line:
+            queue_member = self._get_data(line, '(', ')')
+            return queue_member
+        
         queue_member = self._get_data(line, None, '(')
         return queue_member
+
     
     def _get_member_paused(self, line: str) -> int:
         

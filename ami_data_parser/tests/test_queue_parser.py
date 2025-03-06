@@ -181,7 +181,7 @@ class QueueParserTestCase(TestCase):
         parser = QueueParser()
         data = parser._get_data_member(received_line)
         expect_data = {
-            'name': 'Agent_17',
+            'name': 'SIP/IP-101-Q14V2',
             'has_paused': False,
             'paused_time': 0,
             'reason_paused': None,
