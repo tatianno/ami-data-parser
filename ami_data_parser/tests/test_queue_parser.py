@@ -6,7 +6,7 @@ class QueueParserTestCase(TestCase):
 
     def test_get_data(self):
         received_data = ['Response: Success\r\n', 'ActionID: server-00000002\r\n', 'Message: Command output follows\r\n', "Output: Queue_11 has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talktime), W:0, C:0, A:0, SL:0.0%, SL2:0.0% within 0s\r\n", 'Output:    Members: \r\n', 'Output:       SIP/IP-100-CdFaT (ringinuse disabled) (paused was 2930362 secs ago) (Not in use) has taken no calls yet (login was 2930362 secs ago)\r\n', 'Output:       SIP/IP-101 (ringinuse disabled) (Not in use) has taken no calls yet (login was 2930362 secs ago)\r\n', 'Output:    No Callers\r\n', 'Output: \r\n', "Output: Queue_27 has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talktime), W:0, C:0, A:0, SL:0.0%, SL2:0.0% within 0s\r\n", 'Output:    No Members\r\n', 'Output:    No Callers\r\n', 'Output: \r\n', "Output: Queue_44 has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talktime), W:0, C:0, A:0, SL:0.0%, SL2:0.0% within 0s\r\n", 'Output:    Members: \r\n', 'Output:       SIP/IP-100-boazN (ringinuse disabled) (Unavailable) has taken no calls yet (login was 2930362 secs ago)\r\n', 'Output:       SIP/IP-101-Iathq (ringinuse disabled) (Unavailable) has taken no calls yet (login was 2930362 secs ago)\r\n', 'Output:    No Callers\r\n', 'Output: \r\n', "Output: Queue_47 has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talktime), W:0, C:0, A:0, SL:0.0%, SL2:0.0% within 0s\r\n", 'Output:    No Members\r\n', 'Output:    No Callers\r\n', 'Output: \r\n', 'Output: \r\n']
-        expect_data = [{'members': [{'name': 'SIP/IP-100-CdFaT', 'has_paused': True, 'paused_time': 2930362, 'logged_time': 2930362, 'total_calls': 0, 'last_call_time': 0}, {'name': 'SIP/IP-101', 'has_paused': False, 'paused_time': 0, 'logged_time': 2930362, 'total_calls': 0, 'last_call_time': 0}], 'waiting_calls': [], 'queuename': 'Queue_11', 'total_calls': 0, 'strategy': 'rrmemory', 'wait_mean': 0, 'duration_mean': 0, 'total_wait_calls': 0, 'total_completed_calls': 0, 'total_abandoned_calls': 0}, {'members': [], 'waiting_calls': [], 'queuename': 'Queue_27', 'total_calls': 0, 'strategy': 'rrmemory', 'wait_mean': 0, 'duration_mean': 0, 'total_wait_calls': 0, 'total_completed_calls': 0, 'total_abandoned_calls': 0}, {'members': [{'name': 'SIP/IP-100-boazN', 'has_paused': False, 'paused_time': 0, 'logged_time': 2930362, 'total_calls': 0, 'last_call_time': 0}, {'name': 'SIP/IP-101-Iathq', 'has_paused': False, 'paused_time': 0, 'logged_time': 2930362, 'total_calls': 0, 'last_call_time': 0}], 'waiting_calls': [], 'queuename': 'Queue_44', 'total_calls': 0, 'strategy': 'rrmemory', 'wait_mean': 0, 'duration_mean': 0, 'total_wait_calls': 0, 'total_completed_calls': 0, 'total_abandoned_calls': 0}, {'members': [], 'waiting_calls': [], 'queuename': 'Queue_47', 'total_calls': 0, 'strategy': 'rrmemory', 'wait_mean': 0, 'duration_mean': 0, 'total_wait_calls': 0, 'total_completed_calls': 0, 'total_abandoned_calls': 0}]
+        expect_data = [{'members': [{'name': 'SIP/IP-100-CdFaT', 'has_paused': True, 'reason_paused': None, 'paused_time': 2930362, 'logged_time': 2930362, 'total_calls': 0, 'last_call_time': 0}, {'name': 'SIP/IP-101', 'has_paused': False, 'reason_paused': None, 'paused_time': 0, 'logged_time': 2930362, 'total_calls': 0, 'last_call_time': 0}], 'waiting_calls': [], 'queuename': 'Queue_11', 'total_calls': 0, 'strategy': 'rrmemory', 'wait_mean': 0, 'duration_mean': 0, 'total_wait_calls': 0, 'total_completed_calls': 0, 'total_abandoned_calls': 0}, {'members': [], 'waiting_calls': [], 'queuename': 'Queue_27', 'total_calls': 0, 'strategy': 'rrmemory', 'wait_mean': 0, 'duration_mean': 0, 'total_wait_calls': 0, 'total_completed_calls': 0, 'total_abandoned_calls': 0}, {'members': [{'name': 'SIP/IP-100-boazN', 'has_paused': False, 'paused_time': 0, 'reason_paused': None, 'logged_time': 2930362, 'total_calls': 0, 'last_call_time': 0}, {'name': 'SIP/IP-101-Iathq', 'has_paused': False, 'reason_paused': None, 'paused_time': 0, 'logged_time': 2930362, 'total_calls': 0, 'last_call_time': 0}], 'waiting_calls': [], 'queuename': 'Queue_44', 'total_calls': 0, 'strategy': 'rrmemory', 'wait_mean': 0, 'duration_mean': 0, 'total_wait_calls': 0, 'total_completed_calls': 0, 'total_abandoned_calls': 0}, {'members': [], 'waiting_calls': [], 'queuename': 'Queue_47', 'total_calls': 0, 'strategy': 'rrmemory', 'wait_mean': 0, 'duration_mean': 0, 'total_wait_calls': 0, 'total_completed_calls': 0, 'total_abandoned_calls': 0}]
         queue_parser = QueueParser()
         data = queue_parser.get_data(received_data)
         self.assertListEqual(data, expect_data)
@@ -50,6 +50,7 @@ class QueueParserTestCase(TestCase):
                     'name': 'SIP/IP1489',
                     'has_paused': False,
                     'paused_time': 0,
+                    'reason_paused': None,
                     'logged_time': 0,
                     'total_calls': 3,
                     'last_call_time': 1912
@@ -58,6 +59,7 @@ class QueueParserTestCase(TestCase):
                     'name': 'SIP/IP1492',
                     'has_paused': False,
                     'paused_time': 0,
+                    'reason_paused': None,
                     'logged_time': 0,
                     'total_calls': 0,
                     'last_call_time': 0
@@ -66,6 +68,7 @@ class QueueParserTestCase(TestCase):
                     'name': 'SIP/IP1107',
                     'has_paused': True,
                     'paused_time': 0,
+                    'reason_paused': None,
                     'logged_time': 0,
                     'total_calls': 4,
                     'last_call_time': 1386
@@ -95,7 +98,7 @@ class QueueParserTestCase(TestCase):
    Members: 
       SIP/IP1489 (ringinuse disabled) (in call) (In use) has taken 3 calls (last was 1912 secs ago)
       SIP/IP1492 (ringinuse disabled) (Unavailable) has taken no calls yet
-      SIP/IP1107 (ringinuse disabled) (paused) (Not in use) has taken 4 calls (last was 1386 secs ago)
+      SIP/IP1010 (ringinuse disabled) (paused was 4 secs ago) (Not in use) has taken no calls yet (login was 54 secs ago)
    No Callers'''
         received_data = received_data.split('\n')
         expect_data = {
@@ -112,6 +115,7 @@ class QueueParserTestCase(TestCase):
                     'name': 'SIP/IP1489',
                     'has_paused': False,
                     'paused_time': 0,
+                    'reason_paused': None,
                     'logged_time': 0,
                     'total_calls': 3,
                     'last_call_time': 1912
@@ -120,17 +124,19 @@ class QueueParserTestCase(TestCase):
                     'name': 'SIP/IP1492',
                     'has_paused': False,
                     'paused_time': 0,
+                    'reason_paused': None,
                     'logged_time': 0,
                     'total_calls': 0,
                     'last_call_time': 0
                 },
                 {
-                    'name': 'SIP/IP1107',
+                    'name': 'SIP/IP1010',
                     'has_paused': True,
-                    'paused_time': 0,
-                    'logged_time': 0,
-                    'total_calls': 4,
-                    'last_call_time': 1386
+                    'paused_time': 4,
+                    'reason_paused': None,
+                    'logged_time': 54,
+                    'total_calls': 0,
+                    'last_call_time': 0
                 },
             ],
             'waiting_calls': []
@@ -163,6 +169,7 @@ class QueueParserTestCase(TestCase):
             'name': 'SIP/IP-100-CdFaT',
             'has_paused': True,
             'paused_time': 2507382,
+            'reason_paused': None,
             'logged_time': 3507382,
             'total_calls': 1,
             'last_call_time': 628
@@ -324,3 +331,24 @@ class QueueParserTestCase(TestCase):
         parser = QueueParser()
         total_calls = parser._get_call_priority(received_line)
         self.assertEqual(total_calls, 1)
+
+    def test_get_reason_paused(self):
+        received_line = 'Output:       SIP/IP-101-Q14V2 (ringinuse disabled) (paused:Reunião was 7 secs ago) (Not in use) has taken no calls yet (login was 2856 secs ago)'
+        expected_data = 'Reunião'
+        parser = QueueParser()
+        reason_paused = parser._get_reason_paused(received_line)
+        self.assertEqual(reason_paused, expected_data)
+    
+    def test_get_reason_paused_not_paused(self):
+        received_line = 'Output:       SIP/IP-101-Q14V2 (ringinuse disabled) (Not in use) has taken no calls yet (login was 41 secs ago)'
+        expected_data = None
+        parser = QueueParser()
+        reason_paused = parser._get_reason_paused(received_line)
+        self.assertEqual(reason_paused, expected_data)
+    
+    def test_get_reason_paused_not_reason_paused(self):
+        received_line = 'Output:       SIP/IP-101-Q14V2 (ringinuse disabled) (paused was 4 secs ago) (Not in use) has taken no calls yet (login was 54 secs ago)'
+        expected_data = None
+        parser = QueueParser()
+        reason_paused = parser._get_reason_paused(received_line)
+        self.assertEqual(reason_paused, expected_data)

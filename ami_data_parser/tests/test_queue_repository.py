@@ -21,6 +21,7 @@ class QueueRepositoryTestCase(TestCase):
                     'name': 'SIP/IP1489',
                     'has_paused': False,
                     'paused_time': 0,
+                    'reason_paused': None,
                     'logged_time': 0,
                     'total_calls': 3,
                     'last_call_time': 1912
@@ -56,6 +57,7 @@ class QueueRepositoryTestCase(TestCase):
                     'name': 'SIP/IP1489',
                     'has_paused': False,
                     'paused_time': 0,
+                    'reason_paused': None,
                     'logged_time': 0,
                     'total_calls': 3,
                     'last_call_time': 1912
@@ -83,6 +85,7 @@ class QueueRepositoryTestCase(TestCase):
                 {
                     'name': 'SIP/IP1489',
                     'has_paused': False,
+                    'reason_paused': None,
                     'paused_time': 0,
                     'logged_time': 0,
                     'total_calls': 3,
@@ -113,6 +116,7 @@ class QueueRepositoryTestCase(TestCase):
                     {
                         'name': 'SIP/IP1489',
                         'has_paused': False,
+                        'reason_paused': None,
                         'paused_time': 0,
                         'logged_time': 0,
                         'total_calls': 3,
@@ -134,6 +138,7 @@ class QueueRepositoryTestCase(TestCase):
                     {
                         'name': 'SIP/IP1488',
                         'has_paused': False,
+                        'reason_paused': None,
                         'paused_time': 0,
                         'logged_time': 0,
                         'total_calls': 2,
@@ -161,6 +166,7 @@ class QueueRepositoryTestCase(TestCase):
                     {
                         'name': 'SIP/IP1489',
                         'has_paused': False,
+                        'reason_paused': None,
                         'paused_time': 0,
                         'logged_time': 0,
                         'total_calls': 3,
@@ -182,6 +188,7 @@ class QueueRepositoryTestCase(TestCase):
                     {
                         'name': 'SIP/IP1488',
                         'has_paused': True,
+                        'reason_paused': None,
                         'paused_time': 0,
                         'logged_time': 0,
                         'total_calls': 2,
@@ -208,6 +215,7 @@ class QueueRepositoryTestCase(TestCase):
                     {
                         'name': 'SIP/IP1489',
                         'has_paused': False,
+                        'reason_paused': None,
                         'paused_time': 0,
                         'logged_time': 0,
                         'total_calls': 3,

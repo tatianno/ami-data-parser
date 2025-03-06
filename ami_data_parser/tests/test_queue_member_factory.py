@@ -9,6 +9,7 @@ class QueueMemberFactoryTestCase(TestCase):
             {
                 'name': 'SIP/IP1489',
                 'has_paused': True,
+                'reason_paused': None,
                 'paused_time': 0,
                 'logged_time': 0,
                 'total_calls': 3,
@@ -17,6 +18,7 @@ class QueueMemberFactoryTestCase(TestCase):
             {
                 'name': 'SIP/IP1490',
                 'has_paused': False,
+                'reason_paused': None,
                 'paused_time': 0,
                 'logged_time': 0,
                 'total_calls': 1,

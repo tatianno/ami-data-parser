@@ -11,6 +11,7 @@ class MemberRepositoryTestCase(TestCase):
             'name': 'SIP/IP1489',
             'has_paused': False,
             'paused_time': 0,
+            'reason_paused': None,
             'logged_time': 0,
             'total_calls': 3,
             'last_call_time': 1912
@@ -32,6 +33,7 @@ class MemberRepositoryTestCase(TestCase):
         received_data = {
             'name': 'SIP/IP1489',
             'has_paused': False,
+            'reason_paused': None,
             'paused_time': 0,
             'logged_time': 0,
             'total_calls': 3,
@@ -54,6 +56,7 @@ class MemberRepositoryTestCase(TestCase):
         received_data = {
             'name': 'SIP/IP1489',
             'has_paused': False,
+            'reason_paused': None,
             'paused_time': 0,
             'logged_time': 0,
             'total_calls': 3,
@@ -69,6 +72,7 @@ class MemberRepositoryTestCase(TestCase):
         received_data = {
             'name': 'SIP/IP1489',
             'has_paused': False,
+            'reason_paused': None,
             'paused_time': 0,
             'logged_time': 0,
             'total_calls': 3,
@@ -84,6 +88,7 @@ class MemberRepositoryTestCase(TestCase):
         received_data = {
             'name': 'SIP/IP1489',
             'has_paused': False,
+            'reason_paused': None,
             'paused_time': 0,
             'logged_time': 0,
             'total_calls': 3,
@@ -100,6 +105,7 @@ class MemberRepositoryTestCase(TestCase):
         received_data = {
             'name': 'SIP/IP1489',
             'has_paused': False,
+            'reason_paused': None,
             'paused_time': 0,
             'logged_time': 0,
             'total_calls': 3,
@@ -109,6 +115,7 @@ class MemberRepositoryTestCase(TestCase):
         received_data = {
             'name': 'SIP/IP1489',
             'has_paused': True,
+            'reason_paused': None,
             'paused_time': 0,
             'logged_time': 0,
             'total_calls': 3,
@@ -127,6 +134,7 @@ class MemberRepositoryTestCase(TestCase):
             {
                 'name': 'SIP/IP1489',
                 'has_paused': True,
+                'reason_paused': None,
                 'paused_time': 0,
                 'logged_time': 0,
                 'total_calls': 3,
@@ -135,6 +143,7 @@ class MemberRepositoryTestCase(TestCase):
             {
                 'name': 'SIP/IP1490',
                 'has_paused': False,
+                'reason_paused': None,
                 'paused_time': 0,
                 'logged_time': 0,
                 'total_calls': 1,
@@ -150,6 +159,7 @@ class MemberRepositoryTestCase(TestCase):
                 'name': 'SIP/IP1489',
                 'has_paused': True,
                 'paused_time': 0,
+                'reason_paused': None,
                 'logged_time': 0,
                 'total_calls': 3,
                 'last_call_time': 1912
@@ -157,6 +167,7 @@ class MemberRepositoryTestCase(TestCase):
             {
                 'name': 'SIP/IP1490',
                 'has_paused': True,
+                'reason_paused': None,
                 'paused_time': 0,
                 'logged_time': 0,
                 'total_calls': 1,

@@ -20,6 +20,7 @@ class QueueTestCase(TestCase):
                 {
                     'name': 'SIP/IP1489',
                     'has_paused': False,
+                    'reason_paused': None,
                     'paused_time': 0,
                     'logged_time': 0,
                     'total_calls': 3,
@@ -55,6 +56,7 @@ class QueueTestCase(TestCase):
                 {
                     'name': 'SIP/IP1489',
                     'has_paused': False,
+                    'reason_paused': None,
                     'paused_time': 0,
                     'logged_time': 0,
                     'total_calls': 3,
@@ -77,6 +79,7 @@ class QueueTestCase(TestCase):
                 {
                     'name': 'SIP/IP1489',
                     'has_paused': False,
+                    'reason_paused': None,
                     'paused_time': 0,
                     'logged_time': 0,
                     'total_calls': 3,
@@ -102,6 +105,7 @@ class QueueTestCase(TestCase):
                 {
                     'name': 'SIP/IP1489',
                     'has_paused': False,
+                    'reason_paused': None,
                     'paused_time': 0,
                     'logged_time': 0,
                     'total_calls': 3,
@@ -124,6 +128,7 @@ class QueueTestCase(TestCase):
                 {
                     'name': 'SIP/IP1489',
                     'has_paused': True,
+                    'reason_paused': None,
                     'paused_time': 0,
                     'logged_time': 0,
                     'total_calls': 3,
@@ -149,6 +154,7 @@ class QueueTestCase(TestCase):
                 {
                     'name': 'SIP/IP1489',
                     'has_paused': False,
+                    'reason_paused': None,
                     'paused_time': 0,
                     'logged_time': 0,
                     'total_calls': 3,
@@ -157,6 +163,6 @@ class QueueTestCase(TestCase):
             ],
             'waiting_calls':[]
         }
-        expect_data = {'queuename': 'Queue_1088', 'total_calls': 5, 'strategy': 'rrmemory', 'wait_mean': 348, 'duration_mean': 304, 'total_wait_calls': 10, 'total_completed_calls': 43, 'total_abandoned_calls': 11, 'members': [{'name': 'SIP/IP1489', 'has_paused': False, 'paused_time': 0, 'logged_time': 0, 'total_calls': 3, 'last_call_time': 1912, 'type': 'member'}], 'type': 'queue', 'waiting_calls':[]}
+        expect_data = {'queuename': 'Queue_1088', 'total_calls': 5, 'strategy': 'rrmemory', 'wait_mean': 348, 'duration_mean': 304, 'total_wait_calls': 10, 'total_completed_calls': 43, 'total_abandoned_calls': 11, 'members': [{'name': 'SIP/IP1489', 'has_paused': False, 'reason_paused': None, 'paused_time': 0, 'logged_time': 0, 'total_calls': 3, 'last_call_time': 1912, 'type': 'member'}], 'type': 'queue', 'waiting_calls':[]}
         queue = Queue(**received_data)
         self.assertDictEqual(queue.get_dict(), expect_data)

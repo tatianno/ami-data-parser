@@ -8,6 +8,7 @@ class QueueMember(BaseEntitie):
         name: str,
         has_paused: bool,
         paused_time: int,
+        reason_paused: str,
         logged_time: int,
         total_calls: int,
         last_call_time: int,
@@ -15,6 +16,7 @@ class QueueMember(BaseEntitie):
         self.name = name
         self.has_paused = has_paused
         self.paused_time = paused_time
+        self.reason_paused = reason_paused
         self.logged_time = logged_time
         self.total_calls = total_calls
         self.last_call_time = last_call_time

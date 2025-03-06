@@ -99,6 +99,7 @@ class QueueParser(BaseParser):
             'name': self._get_member_name(line),
             'has_paused': self._get_member_has_paused(line),
             'paused_time': self._get_member_paused(line),
+            'reason_paused': self._get_reason_paused(line),
             'logged_time': self._get_member_logged(line),
             'total_calls': self._get_member_calls(line),
             'last_call_time': self._get_member_last_call(line)
@@ -159,6 +160,18 @@ class QueueParser(BaseParser):
     
     def _get_member_has_paused(self, line: str) -> bool:
         return bool('paused' in line)
+    
+    def _get_reason_paused(self, line: str) -> str:
+        pattern = 'paused:'
+
+        if pattern in line:
+            pos_ini = line.find(pattern) + len(pattern)
+            line = line[pos_ini:]
+            pos_end = line.find('was')
+            line = line[:pos_end]
+            return line.strip()
+            
+        return None
     
     def _get_member_logged(self, line: str) -> int:
         

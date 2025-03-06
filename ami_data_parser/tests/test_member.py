@@ -8,6 +8,7 @@ class MemberTestCase(TestCase):
         received_data = {
             'name': 'SIP/IP1489',
             'has_paused': False,
+            'reason_paused': None,
             'paused_time': 0,
             'logged_time': 0,
             'total_calls': 3,
@@ -17,6 +18,27 @@ class MemberTestCase(TestCase):
         self.assertEqual(member.type, 'member')
         self.assertEqual(member.name, 'SIP/IP1489')
         self.assertEqual(member.has_paused, False)
+        self.assertEqual(member.reason_paused, None)
+        self.assertEqual(member.paused_time, 0)
+        self.assertEqual(member.logged_time, 0)
+        self.assertEqual(member.total_calls, 3)
+        self.assertEqual(member.last_call_time, 1912)
+    
+    def test_instance_member_paused(self):
+        received_data = {
+            'name': 'SIP/IP1489',
+            'has_paused': True,
+            'reason_paused': 'Reunião',
+            'paused_time': 0,
+            'logged_time': 0,
+            'total_calls': 3,
+            'last_call_time': 1912
+        }
+        member = QueueMember(**received_data)
+        self.assertEqual(member.type, 'member')
+        self.assertEqual(member.name, 'SIP/IP1489')
+        self.assertEqual(member.has_paused, True)
+        self.assertEqual(member.reason_paused, 'Reunião')
         self.assertEqual(member.paused_time, 0)
         self.assertEqual(member.logged_time, 0)
         self.assertEqual(member.total_calls, 3)
@@ -27,6 +49,7 @@ class MemberTestCase(TestCase):
             'name': 'SIP/IP1489',
             'has_paused': False,
             'paused_time': 0,
+            'reason_paused': None,
             'logged_time': 0,
             'total_calls': 3,
             'last_call_time': 1912
@@ -36,6 +59,7 @@ class MemberTestCase(TestCase):
             'name': 'SIP/IP1489',
             'has_paused': False,
             'paused_time': 0,
+            'reason_paused': None,
             'logged_time': 0,
             'total_calls': 3,
             'last_call_time': 2523
@@ -47,6 +71,7 @@ class MemberTestCase(TestCase):
         received_data = {
             'name': 'SIP/IP1489',
             'has_paused': False,
+            'reason_paused': None,
             'paused_time': 0,
             'logged_time': 0,
             'total_calls': 3,
@@ -56,6 +81,7 @@ class MemberTestCase(TestCase):
         received_data = {
             'name': 'SIP/IP1489',
             'has_paused': True,
+            'reason_paused': None,
             'paused_time': 0,
             'logged_time': 0,
             'total_calls': 3,
