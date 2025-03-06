@@ -42,11 +42,7 @@ class Controller:
             return self._queue_repository.get(entity_key)
         
         elif entity_type == 'channel':
-
-            if not self._channel_repository.exists(entity_key) and not raise_exception:
-                return None
-            
-            return self._channel_repository.get(entity_key)
+            return self._channel_repository.get(peername=entity_key)
         
         raise TypeError(f'Invalid type: {entity_type}')
     
