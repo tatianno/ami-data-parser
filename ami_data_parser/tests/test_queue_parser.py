@@ -176,6 +176,21 @@ class QueueParserTestCase(TestCase):
         }
         self.assertDictEqual(data, expect_data)
     
+    def test_get_data_member_dynamic(self):
+        received_line = 'Output:       Agent_17 (SIP/IP-101-Q14V2) (ringinuse disabled) (dynamic) (Not in use) has taken no calls yet (login was 4 secs ago)'
+        parser = QueueParser()
+        data = parser._get_data_member(received_line)
+        expect_data = {
+            'name': 'Agent_17',
+            'has_paused': False,
+            'paused_time': 0,
+            'reason_paused': None,
+            'logged_time': 4,
+            'total_calls': 0,
+            'last_call_time': 0
+        }
+        self.assertDictEqual(data, expect_data)
+    
     def test_get_data_channel(self):
         received_line = 'Output:       1. IAX2/SERVER_2-13471 (wait: 8:25, prio: 0)'
         parser = QueueParser()
