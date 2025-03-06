@@ -9,6 +9,8 @@ class MemberTestCase(TestCase):
             'name': 'SIP/IP1489',
             'has_paused': False,
             'reason_paused': None,
+            'dynamic': None, 
+            'in_call': False,
             'paused_time': 0,
             'logged_time': 0,
             'total_calls': 3,
@@ -23,12 +25,17 @@ class MemberTestCase(TestCase):
         self.assertEqual(member.logged_time, 0)
         self.assertEqual(member.total_calls, 3)
         self.assertEqual(member.last_call_time, 1912)
+        self.assertEqual(member.reason_paused, None)
+        self.assertEqual(member.dynamic, None)
+        self.assertEqual(member.in_call, False)
     
     def test_instance_member_paused(self):
         received_data = {
             'name': 'SIP/IP1489',
             'has_paused': True,
             'reason_paused': 'Reunião',
+            'dynamic': None, 
+            'in_call': False,
             'paused_time': 0,
             'logged_time': 0,
             'total_calls': 3,
@@ -43,11 +50,15 @@ class MemberTestCase(TestCase):
         self.assertEqual(member.logged_time, 0)
         self.assertEqual(member.total_calls, 3)
         self.assertEqual(member.last_call_time, 1912)
+        self.assertEqual(member.dynamic, None)
+        self.assertEqual(member.in_call, False)
     
     def test_instance_member_equal(self):
         received_data = {
             'name': 'SIP/IP1489',
             'has_paused': False,
+            'dynamic': None, 
+            'in_call': False,
             'paused_time': 0,
             'reason_paused': None,
             'logged_time': 0,
@@ -58,6 +69,8 @@ class MemberTestCase(TestCase):
         received_data = {
             'name': 'SIP/IP1489',
             'has_paused': False,
+            'dynamic': None, 
+            'in_call': False,
             'paused_time': 0,
             'reason_paused': None,
             'logged_time': 0,
@@ -72,6 +85,8 @@ class MemberTestCase(TestCase):
             'name': 'SIP/IP1489',
             'has_paused': False,
             'reason_paused': None,
+            'dynamic': None, 
+            'in_call': False,
             'paused_time': 0,
             'logged_time': 0,
             'total_calls': 3,
@@ -82,6 +97,8 @@ class MemberTestCase(TestCase):
             'name': 'SIP/IP1489',
             'has_paused': True,
             'reason_paused': None,
+            'dynamic': None, 
+            'in_call': False,
             'paused_time': 0,
             'logged_time': 0,
             'total_calls': 3,

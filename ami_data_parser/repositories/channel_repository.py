@@ -14,5 +14,5 @@ class ChannelRepository(BaseRepository):
             for channel_name in self._objects:
                 if channel_name.startswith(peername):
                     return super().get(channel_name)
-        
-        raise self._entitie.DoesExists(f'{name} does exists in objects repository')
+            
+        return None

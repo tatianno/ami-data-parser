@@ -97,6 +97,8 @@ class QueueParser(BaseParser):
     def _get_data_member(self, line: str) -> dict:
         return {
             'name': self._get_member_name(line),
+            'dynamic': self._get_dynamic_name(line),
+            'in_call': self._get_in_call_atribute(line),
             'has_paused': self._get_member_has_paused(line),
             'paused_time': self._get_member_paused(line),
             'reason_paused': self._get_reason_paused(line),
@@ -154,6 +156,15 @@ class QueueParser(BaseParser):
         queue_member = self._get_data(line, None, '(')
         return queue_member
 
+    def _get_dynamic_name(self, line) -> str:
+
+        if '(dynamic)' in line:
+            return self._get_data(line, None, '(')
+        
+        return None
+    
+    def _get_in_call_atribute(self, line) -> bool:
+        return bool('(in call)' in line)
     
     def _get_member_paused(self, line: str) -> int:
         

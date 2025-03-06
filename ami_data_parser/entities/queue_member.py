@@ -6,6 +6,8 @@ class QueueMember(BaseEntitie):
     def __init__(
         self,
         name: str,
+        dynamic: str,
+        in_call: bool,
         has_paused: bool,
         paused_time: int,
         reason_paused: str,
@@ -14,6 +16,8 @@ class QueueMember(BaseEntitie):
         last_call_time: int,
     ):
         self.name = name
+        self.dynamic = dynamic
+        self.in_call = in_call
         self.has_paused = has_paused
         self.paused_time = paused_time
         self.reason_paused = reason_paused
