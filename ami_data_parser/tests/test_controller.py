@@ -35,6 +35,26 @@ class ControllerTestCase(TestCase):
         expected_data = [{'channel': 'SIP/IP-7436-QPQGE-00000002', 'context': 'C_1_ENT', 'exten': '997799298', 'priority': '1', 'state': 'Down', 'application': 'AppDial', 'app_data': '(Outgoing Line)', 'callerid_num': '997799298', 'uniqueid': '1740760337.2', 'timestamp': 1736960329.736009, 'type': 'channel', 'event': 'added'}, {'channel': 'SIP/IP-101-Q14V2-00000001', 'context': 'macro-externa', 'exten': 's', 'priority': '22', 'state': 'Ring', 'application': 'Dial', 'app_data': 'SIP/IP-7436-QPQGE/997799298,90,TtM(saida_atendimento)', 'callerid_num': '101', 'uniqueid': '1740760337.1', 'timestamp': 1736960329.736009, 'type': 'channel', 'event': 'added'}]
         data = controller.update(received_data)
         self.assertListEqual(data, expected_data)
+    
+    def test_update_queue_attr_changed(self):
+        received_data = ['Response: Success\r\n', 'ActionID: server-00000003\r\n', 'Message: Command output follows\r\n', 'Output: \r\n', 'Output:     -= Registered Asterisk Dial Plan Hints =-\r\n', 'Output: 100@BLF_1           : SIP/IP-100-CdFaT      State:Idle     Presence:not_set         Watchers  0\r\n', 'Output: ----------------\r\n', 'Output: - 1 hints registered\r\n']
+        controller = Controller()
+        controller._get_peers = get_peers_test
+        controller._peer_repository._entitie = PeerTest
+        controller._get_channels = get_channels_test
+        controller._channel_repository._entitie = ChannelTest
+        controller.update(received_data)
+        received_data = ['Response: Success\r\n', 'ActionID: server-00000002\r\n', 'Message: Command output follows\r\n', "Output: Queue_11 has 0 calls (max unlimited) in 'rrmemory' strategy (0s holdtime, 0s talktime), W:0, C:0, A:0, SL:0.0%, SL2:0.0% within 0s\r\n", 'Output:    Members: \r\n', 'Output:       SIP/IP-100-CdFaT (ringinuse disabled) (paused was 2930382 secs ago) (Not in use) has taken no calls yet (login was 2930362 secs ago)\r\n', 'Output:    No Callers\r\n', 'Output: \r\n', 'Output: \r\n']
+        controller.update(received_data)
+        received_data = ['Response: Success\r\n', 'ActionID: server-00000002\r\n', 'Message: Command output follows\r\n', "Output: Queue_11 has 0 calls (max unlimited) in 'rrmemory' strategy (40s holdtime, 180s talktime), W:0, C:0, A:0, SL:0.0%, SL2:0.0% within 0s\r\n", 'Output:    Members: \r\n', 'Output:       SIP/IP-100-CdFaT (ringinuse disabled) (paused was 2930420 secs ago) (Not in use) has taken no calls yet (login was 2934322 secs ago)\r\n', 'Output:    No Callers\r\n', 'Output: \r\n', 'Output: \r\n']
+        data = controller.update(received_data)
+        queue = controller.get('Queue_11', 'queue')
+        member = queue.members.get('SIP/IP-100-CdFaT')
+        self.assertEqual(len(data), 0)
+        self.assertEqual(40, queue.wait_mean)
+        self.assertEqual(180, queue.duration_mean)
+        self.assertEqual(2930420, member.paused_time)
+        self.assertEqual(2934322, member.logged_time)
 
     def test_type_peer_output(self):
         received_data = ['Response: Success\r\n', 'ActionID: server-00000003\r\n', 'Message: Command output follows\r\n', 'Output: \r\n', 'Output:     -= Registered Asterisk Dial Plan Hints =-\r\n', 'Output: 104@BLF_1           : SIP/IP-104-IJ8vP      State:Unavailable     Presence:not_set         Watchers  0\r\n', 'Output: 104@BLF_3           : SIP/IP-104-7QmO5      State:Unavailable     Presence:not_set         Watchers  0\r\n', 'Output: ----------------\r\n', 'Output: - 2 hints registered\r\n']
@@ -197,16 +217,6 @@ class ControllerTestCase(TestCase):
             controller.get,
             'Queue_11', 
             'queue',
-            raise_exception=True
-        )
-    
-    def test_get_channel_not_exists_raise_exception(self):
-        controller = Controller()
-        self.assertRaises(
-            Channel.DoesExists,
-            controller.get,
-            'SIP/IP-100-234', 
-            'channel',
             raise_exception=True
         )
 

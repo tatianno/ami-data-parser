@@ -37,6 +37,7 @@ class BaseRepository:
                     items_not_changed.remove(key)
                 
                 else:
+                    self._objects[key] = item
                     items_not_changed.remove(key)
 
         for removed_item in items_not_changed:
