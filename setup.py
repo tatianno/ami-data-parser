@@ -6,7 +6,7 @@ with open("README.md", "r") as arq:
 
 setup(
     name='ami-data-parser',
-    version='0.2.7',
+    version='0.2.8',
     license='MIT License',
     author='Tatianno Alves',
     long_description=readme,

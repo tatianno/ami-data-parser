@@ -1,9 +1,13 @@
+from ami_data_parser.parser.utils import set_output_format
+
+
 class ChannelParser:
 
     def get_data(self, lines: list) -> list:
         channels_data = []
 
         for line in lines:
+            line = set_output_format(line)
             channel_data = self._get_parser_channel(line)
 
             if channel_data:

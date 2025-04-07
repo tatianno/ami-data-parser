@@ -1,4 +1,5 @@
 from ami_data_parser.parser.core import BaseParser, ParserException
+from ami_data_parser.parser.utils import set_output_format
 
 
 class HintParser(BaseParser):
@@ -7,6 +8,8 @@ class HintParser(BaseParser):
         data = []
         
         for line in lines:
+            line = set_output_format(line)
+
             if 'Output:' in line:
                 try:
                     data.append(self._get_parser_hint(line))

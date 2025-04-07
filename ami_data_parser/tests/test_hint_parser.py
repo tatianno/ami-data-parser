@@ -10,6 +10,13 @@ class HintParserTestCase(TestCase):
         hint_parser = HintParser()
         data = hint_parser.get_data(received_data)
         self.assertListEqual(data, expected_data)
+    
+    def test_get_data_without_output_word(self):
+        received_data = ['Response: Follows\r\n', 'Privilege: Command\r\n', 'ActionID: pbx-jhf-00000028\r\n', '\n', '    -= Registered Asterisk Dial Plan Hints =-\n', '237@BLF_2           : SIP/237-IPe9AAl       State:Idle            Presence:not_set         Watchers  0\n', '104@BLF_2           : SIP/104-IPnc3MM       State:Unavailable     Presence:not_set         Watchers  0\n', '105@BLF_2           : SIP/105-IPCZncL       State:Idle            Presence:not_set         Watchers  0\n', '----------------\n', '- 3 hints registered\n', '--END COMMAND--\r\n']
+        expected_data = [{'exten': '237', 'peername': 'SIP/237-IPe9AAl', 'state': 'Idle', 'presence': 'not_set', 'watchers': 0}, {'exten': '104', 'peername': 'SIP/104-IPnc3MM', 'state': 'Unavailable', 'presence': 'not_set', 'watchers': 0}, {'exten': '105', 'peername': 'SIP/105-IPCZncL', 'state': 'Idle', 'presence': 'not_set', 'watchers': 0}]
+        hint_parser = HintParser()
+        data = hint_parser.get_data(received_data)
+        self.assertListEqual(data, expected_data)
 
     def test_get_parser_hint(self):
         received_data = 'Output: 104@BLF_1           : SIP/IP-104-IJ8vP      State:Unavailable     Presence:not_set         Watchers  0\r\n'
@@ -18,6 +25,19 @@ class HintParserTestCase(TestCase):
             'peername': 'SIP/IP-104-IJ8vP',
             'state': 'Unavailable',
             'presence': 'not_set',
+            'watchers': 0
+        }
+        hint_parser = HintParser()
+        data = hint_parser._get_parser_hint(received_data)
+        self.assertDictEqual(data, expected_data)
+
+    def test_get_parser_hint_without_output_word(self):
+        received_data = '237@BLF_2           : SIP/237-IPe9AAl       State:Idle            Presence:not_set         Watchers  0\n'
+        expected_data = {
+            'exten': '237', 
+            'peername': 'SIP/237-IPe9AAl', 
+            'state': 'Idle', 
+            'presence': 'not_set', 
             'watchers': 0
         }
         hint_parser = HintParser()
