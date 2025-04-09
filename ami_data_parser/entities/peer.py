@@ -21,6 +21,9 @@ class Peer(BaseEntitie):
 
     def get_key(self) -> str:
         return self.peername
+    
+    def set_status_time(self, obj) -> None:
+        self.timestamp = obj.timestamp
 
     def __eq__(self, value: object) -> bool:
 

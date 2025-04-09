@@ -12,5 +12,9 @@ class BaseEntitie:
     def get_key(self) -> str:
         raise NotImplemented
     
+    def set_status_time(self, obj):
+        ...
+        
     def _get_timestamp(self) -> float:
         return datetime.now().timestamp()
+    

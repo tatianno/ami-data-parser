@@ -37,6 +37,7 @@ class BaseRepository:
                     items_not_changed.remove(key)
                 
                 else:
+                    item.set_status_time(old_entity)
                     self._objects[key] = item
                     items_not_changed.remove(key)
 
