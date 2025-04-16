@@ -34,12 +34,16 @@ class BaseRepository:
                 if old_entity != item:
                     self._diff.append((key, 'changed'))
                     self._objects[key] = item
-                    items_not_changed.remove(key)
+
+                    if key in items_not_changed:
+                        items_not_changed.remove(key)
                 
                 else:
                     item.set_status_time(old_entity)
                     self._objects[key] = item
-                    items_not_changed.remove(key)
+                    
+                    if key in items_not_changed:
+                        items_not_changed.remove(key)
 
         for removed_item in items_not_changed:
             del self._objects[removed_item]
